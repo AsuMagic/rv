@@ -16,11 +16,18 @@ impl From<MemoryError> for DecodeError {
 }
 
 pub struct Emulator {
-    regs: Registers,
-    mem: Memory
+    pub regs: Registers,
+    pub mem: Memory
 }
 
 impl Emulator {
+    pub fn new(mem: Memory) -> Self {
+        Self {
+            mem,
+            regs: Registers::default()
+        }
+    }
+
     pub fn decode(&self, ip: Word) -> Result<Instruction, DecodeError> {
         let first_word: Word = self.mem.load32_aligned(ip)?;
 

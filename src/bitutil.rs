@@ -27,7 +27,7 @@ impl FieldBuilder {
 
     pub fn skip_bits(mut self, count: usize) -> Self {
         self.bit_count += count;
-        debug_assert!(self.bit_count < std::mem::size_of::<EncodedInstruction>() * 8);
+        debug_assert!(self.bit_count <= std::mem::size_of::<EncodedInstruction>() * 8);
         self
     }
 
